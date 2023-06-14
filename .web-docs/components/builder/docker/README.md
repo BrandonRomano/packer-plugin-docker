@@ -128,8 +128,6 @@ source "docker" "example" {
 }
 ```
 
->>>>>>> 01ae27e (Upgrade plugin for integrations library)
-
 Allowed metadata fields that can be changed are:
 
 - CMD
@@ -340,8 +338,6 @@ of post-processors that are treated as as single pipeline, see
   }
 }
 ```
-
->>>>>>> 01ae27e (Upgrade plugin for integrations library)
 
 In the above example, the result of each builder is passed through the defined
 sequence of post-processors starting first with the `docker-import`
