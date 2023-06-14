@@ -1,17 +1,3 @@
----
-description: >
-  The docker Packer builder builds Docker images using Docker. The builder
-  starts
-
-  a Docker container, runs provisioners within this container, then exports the
-
-  container for reuse or commits the image.
-page_title: Docker - Builders
-nav_title: Docker
----
-
-# Docker Builder
-
 Type: `docker`
 
 The `docker` Packer builder builds [Docker](https://www.docker.io) images using
@@ -52,14 +38,15 @@ provisioners are defined, but it will effectively repackage an image.
 
 ```hcl
 source "docker" "example" {
-  image = "ubuntu"
-  export_path = "image.tar"
+    image = "ubuntu"
+    export_path = "image.tar"
 }
 
 build {
   sources = ["source.docker.example"]
 }
 ```
+
 
 ## Basic Example: Commit
 
@@ -73,7 +60,7 @@ then be more easily tagged, pushed, etc.
 {
   "type": "docker",
   "image": "ubuntu",
-  "export_path": "image.tar"
+  "commit": true
 }
 ```
 
@@ -81,14 +68,15 @@ then be more easily tagged, pushed, etc.
 
 ```hcl
 source "docker" "example" {
-  image = "ubuntu"
-  commit = true
+    image = "ubuntu"
+    commit = true
 }
 
 build {
   sources = ["source.docker.example"]
 }
 ```
+
 
 ## Basic Example: Changes to Metadata
 
@@ -142,7 +130,6 @@ source "docker" "example" {
 }
 ```
 
->>>>>>> 01ae27e (Upgrade plugin for integrations library)
 
 Allowed metadata fields that can be changed are:
 
@@ -197,7 +184,7 @@ You must specify (only) one of `commit`, `discard`, or `export_path`.
 
 - `discard` (bool) - Throw away the container when the build is complete. This is useful for
   the [artifice
-  post-processor](/packer/docs/post-processors/artifice).
+  post-processor](/packer/docs/post-processor/artifice).
 
 - `export_path` (string) - The path where the final container will be exported as a tar file.
 
@@ -209,10 +196,12 @@ You must specify (only) one of `commit`, `discard`, or `export_path`.
 ### Optional:
 
 - `aws_access_key` (string) - The AWS access key used to communicate with
-  AWS. [Learn how to set this.](/packer/plugins/builders/amazon#specifying-amazon-credentials) 
+  AWS. Learn how to set
+  this.
 
 - `aws_secret_key` (string) - The AWS secret key used to communicate with
-  AWS. [Learn how to set this.](/packer/plugins/builders/amazon#specifying-amazon-credentials)
+  AWS. Learn how to set
+  this.
 
 - `aws_token` (string) - The AWS access token to use. This is different from
   the access key and secret key. If you're not sure what this is, then you
@@ -220,7 +209,8 @@ You must specify (only) one of `commit`, `discard`, or `export_path`.
   environmental variable.
 
 - `aws_profile` (string) - The AWS shared credentials profile used to
-  communicate with AWS. [Learn how to set this.](/packer/plugins/builders/amazon#specifying-amazon-credentials)
+  communicate with AWS. Learn how to set
+  this.
 
 - `author` (string) - Set the author (e-mail) of a commit.
 
@@ -229,7 +219,7 @@ You must specify (only) one of `commit`, `discard`, or `export_path`.
   /app", "EXPOSE 8080" ]
 
 - `container_dir` (string) - The directory inside container to mount temp directory from host server
-  for work [file provisioner](/packer/docs/provisioners/file). This defaults
+  for work [file provisioner](/packer/docs/provisioner/file). This defaults
   to c:/packer-files on windows and /packer-files on other systems.
 
 - `device` ([]string) - An array of devices which will be accessible in container when it's run
@@ -311,8 +301,8 @@ The generated variable available for this builder is:
 
 Once the tar artifact has been generated, you will likely want to import, tag,
 and push it to a container repository. Packer can do this for you automatically
-with the [docker-import](/packer/plugins/post-processors/docker/docker-import) and
-[docker-push](/packer/plugins/post-processors/docker/docker-push) post-processors.
+with the [docker-import](/packer/integrations/BrandonRomano/docker/latest/components/post-processor/docker-import) and
+[docker-push](/packer/integrations/BrandonRomano/docker/latest/components/post-processor/docker-push) post-processors.
 
 **Note:** This section is covering how to use an artifact that has been
 _exported_. More specifically, if you set `export_path` in your configuration.
@@ -355,7 +345,6 @@ of post-processors that are treated as as single pipeline, see
 }
 ```
 
->>>>>>> 01ae27e (Upgrade plugin for integrations library)
 
 In the above example, the result of each builder is passed through the defined
 sequence of post-processors starting first with the `docker-import`
@@ -414,6 +403,7 @@ information):
 }
 ```
 
+
 In the above example, the result of each builder is passed through the defined
 sequence of post-processors starting first with the `docker-tag` post-processor
 which tags the committed image with the supplied repository and tag
@@ -470,6 +460,7 @@ nearly-identical sequence definitions, as demonstrated by the example below:
 }
 ```
 
+
 <span id="amazon-ec2-container-registry"></span>
 
 ## Docker For Windows
@@ -516,6 +507,7 @@ build {
 }
 ```
 
+
 ## Amazon EC2 Container Registry
 
 Packer can tag and push images for use in [Amazon EC2 Container
@@ -550,18 +542,19 @@ above and example configuration properties are shown below:
 ```hcl
 post-processors {
   post-processor "docker-tag" {
-    repository = "public.ecr.aws/YOUR REGISTRY ALIAS HERE/YOUR REGISTRY NAME HERE"
-    tags       = ["latest"]
+      repository = "12345.dkr.ecr.us-east-1.amazonaws.com/packer"
+      tags = ["0.7"]
   }
-
   post-processor "docker-push" {
-    ecr_login = true
-    aws_access_key = "YOUR KEY HERE"
-    aws_secret_key = "YOUR SECRET KEY HERE"
-    login_server = "public.ecr.aws/YOUR REGISTRY ALIAS HERE"
+      ecr_login = true
+      aws_access_key = "YOUR KEY HERE"
+      aws_secret_key = "YOUR SECRET KEY HERE"
+      login_server = "12345.dkr.ecr.us-east-1.amazonaws.com"
   }
 }
 ```
+
+
 
 ## Amazon ECR Public Gallery
 
@@ -610,7 +603,9 @@ and example configuration properties are shown below:
     }
 ```
 
-[Learn how to set Amazon AWS credentials.](/packer/plugins/builders/amazon#specifying-amazon-credentials)
+
+[Learn how to set Amazon AWS
+credentials.](/packer/integrations/BrandonRomano/amazon#specifying-amazon-credentials)
 
 ## Dockerfiles
 

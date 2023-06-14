@@ -1,22 +1,10 @@
----
-description: |
-  The Packer Docker import post-processor takes an artifact from the docker
-  builder and imports it with Docker locally. This allows you to apply a
-  repository and tag to the image and lets you use the other Docker
-  post-processors such as docker-push to push the image to a registry.
-page_title: Docker Import - Post-Processors
-nav_title: Docker Import
----
-
-# Docker Import Post-Processor
-
 Type: `docker-import`
 
 The Packer Docker import post-processor takes an artifact from the [docker
-builder](/packer/plugins/builders/docker) and imports it with Docker locally. This
+builder](/packer/integrations/BrandonRomano/docker) and imports it with Docker locally. This
 allows you to apply a repository and tag to the image and lets you use the
 other Docker post-processors such as
-[docker-push](/packer/plugins/post-processors/docker/docker-push) to push the image to a
+[docker-push](/packer/integrations/BrandonRomano/docker/latest/components/post-processor/docker-push) to push the image to a
 registry.
 
 ## Basic Example
@@ -61,6 +49,7 @@ build {
   }
 }
 ```
+
 
 ## Configuration
 
@@ -113,7 +102,7 @@ This example would take the image created by the Docker builder and import it
 into the local Docker process with a name of `hashicorp/packer:0.7`.
 
 Following this, you can use the
-[docker-push](/packer/plugins/post-processors/docker/docker-push) post-processor to push it
+[docker-push](/packer/integrations/BrandonRomano/docker/latest/components/post-processor/docker-push) post-processor to push it
 to a registry, if you want.
 
 ## Changing Metadata
@@ -128,26 +117,6 @@ Example uses of all of the options, assuming one is building an NGINX image
 from ubuntu as an simple example:
 
 **JSON**
-
-```hcl
-post-processor "docker-import" {
-  repository = "local/centos6"
-  tag = "latest"
-  changes = [
-    "USER www-data",
-    "WORKDIR /var/www",
-    "ENV HOSTNAME www.example.com",
-    "VOLUME /test1 /test2",
-    "EXPOSE 80 443",
-    "LABEL version=1.0",
-    "ONBUILD RUN date",
-    "CMD [\"nginx\", \"-g\", \"daemon off;\"]",
-    "ENTRYPOINT /var/www/start.sh",
-  ]
-}
-```
-
-**HCL2**
 
 ```json
 {
@@ -164,6 +133,26 @@ post-processor "docker-import" {
     "ONBUILD RUN date",
     "CMD [\"nginx\", \"-g\", \"daemon off;\"]",
     "ENTRYPOINT /var/www/start.sh"
+  ]
+}
+```
+
+**HCL2**
+
+```hcl
+post-processor "docker-import" {
+  repository = "local/centos6"
+  tag = "latest"
+  changes = [
+    "USER www-data",
+    "WORKDIR /var/www",
+    "ENV HOSTNAME www.example.com",
+    "VOLUME /test1 /test2",
+    "EXPOSE 80 443",
+    "LABEL version=1.0",
+    "ONBUILD RUN date",
+    "CMD [\"nginx\", \"-g\", \"daemon off;\"]",
+    "ENTRYPOINT /var/www/start.sh",
   ]
 }
 ```
