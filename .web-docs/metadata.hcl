@@ -2,7 +2,7 @@
 # https://github.com/hashicorp/integration-template#metadata-configuration
 integration {
   name = "Docker"
-  description = "TODO"
+  description = "The docker plugin can be used with HashiCorp Packer to manage containers with Docker."
   identifier = "packer/BrandonRomano/docker"
   component {
     type = "builder"
