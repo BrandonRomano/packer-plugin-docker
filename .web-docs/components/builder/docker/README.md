@@ -38,15 +38,14 @@ provisioners are defined, but it will effectively repackage an image.
 
 ```hcl
 source "docker" "example" {
-    image = "ubuntu"
-    export_path = "image.tar"
+  image = "ubuntu"
+  export_path = "image.tar"
 }
 
 build {
   sources = ["source.docker.example"]
 }
 ```
-
 
 ## Basic Example: Commit
 
@@ -60,7 +59,7 @@ then be more easily tagged, pushed, etc.
 {
   "type": "docker",
   "image": "ubuntu",
-  "commit": true
+  "export_path": "image.tar"
 }
 ```
 
@@ -68,15 +67,14 @@ then be more easily tagged, pushed, etc.
 
 ```hcl
 source "docker" "example" {
-    image = "ubuntu"
-    commit = true
+  image = "ubuntu"
+  commit = true
 }
 
 build {
   sources = ["source.docker.example"]
 }
 ```
-
 
 ## Basic Example: Changes to Metadata
 
@@ -130,6 +128,7 @@ source "docker" "example" {
 }
 ```
 
+>>>>>>> 01ae27e (Upgrade plugin for integrations library)
 
 Allowed metadata fields that can be changed are:
 
@@ -196,12 +195,10 @@ You must specify (only) one of `commit`, `discard`, or `export_path`.
 ### Optional:
 
 - `aws_access_key` (string) - The AWS access key used to communicate with
-  AWS. Learn how to set
-  this.
+  AWS. [Learn how to set this.](/packer/integrations/BrandonRomano/amazon#specifying-amazon-credentials) 
 
 - `aws_secret_key` (string) - The AWS secret key used to communicate with
-  AWS. Learn how to set
-  this.
+  AWS. [Learn how to set this.](/packer/integrations/BrandonRomano/amazon#specifying-amazon-credentials)
 
 - `aws_token` (string) - The AWS access token to use. This is different from
   the access key and secret key. If you're not sure what this is, then you
@@ -209,8 +206,7 @@ You must specify (only) one of `commit`, `discard`, or `export_path`.
   environmental variable.
 
 - `aws_profile` (string) - The AWS shared credentials profile used to
-  communicate with AWS. Learn how to set
-  this.
+  communicate with AWS. [Learn how to set this.](/packer/integrations/BrandonRomano/amazon#specifying-amazon-credentials)
 
 - `author` (string) - Set the author (e-mail) of a commit.
 
@@ -345,6 +341,7 @@ of post-processors that are treated as as single pipeline, see
 }
 ```
 
+>>>>>>> 01ae27e (Upgrade plugin for integrations library)
 
 In the above example, the result of each builder is passed through the defined
 sequence of post-processors starting first with the `docker-import`
@@ -403,7 +400,6 @@ information):
 }
 ```
 
-
 In the above example, the result of each builder is passed through the defined
 sequence of post-processors starting first with the `docker-tag` post-processor
 which tags the committed image with the supplied repository and tag
@@ -460,7 +456,6 @@ nearly-identical sequence definitions, as demonstrated by the example below:
 }
 ```
 
-
 <span id="amazon-ec2-container-registry"></span>
 
 ## Docker For Windows
@@ -507,7 +502,6 @@ build {
 }
 ```
 
-
 ## Amazon EC2 Container Registry
 
 Packer can tag and push images for use in [Amazon EC2 Container
@@ -542,19 +536,18 @@ above and example configuration properties are shown below:
 ```hcl
 post-processors {
   post-processor "docker-tag" {
-      repository = "12345.dkr.ecr.us-east-1.amazonaws.com/packer"
-      tags = ["0.7"]
+    repository = "public.ecr.aws/YOUR REGISTRY ALIAS HERE/YOUR REGISTRY NAME HERE"
+    tags       = ["latest"]
   }
+
   post-processor "docker-push" {
-      ecr_login = true
-      aws_access_key = "YOUR KEY HERE"
-      aws_secret_key = "YOUR SECRET KEY HERE"
-      login_server = "12345.dkr.ecr.us-east-1.amazonaws.com"
+    ecr_login = true
+    aws_access_key = "YOUR KEY HERE"
+    aws_secret_key = "YOUR SECRET KEY HERE"
+    login_server = "public.ecr.aws/YOUR REGISTRY ALIAS HERE"
   }
 }
 ```
-
-
 
 ## Amazon ECR Public Gallery
 
@@ -603,9 +596,7 @@ and example configuration properties are shown below:
     }
 ```
 
-
-[Learn how to set Amazon AWS
-credentials.](/packer/integrations/BrandonRomano/amazon#specifying-amazon-credentials)
+[Learn how to set Amazon AWS credentials.](/packer/integrations/BrandonRomano/amazon#specifying-amazon-credentials)
 
 ## Dockerfiles
 

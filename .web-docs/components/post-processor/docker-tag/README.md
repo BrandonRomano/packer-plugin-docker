@@ -56,7 +56,6 @@ post-processor "docker-tag" {
 }
 ```
 
-
 This example would take the image created by the Docker builder and tag it into
 the local Docker process with a name of `hashicorp/packer:0.7`.
 
