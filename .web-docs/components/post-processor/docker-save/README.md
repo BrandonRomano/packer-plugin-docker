@@ -1,7 +1,7 @@
 Type: `docker-save`
 
 The Packer Docker Save post-processor takes an artifact from the [docker
-builder](/packer/integrations/BrandonRomano/docker) that was committed and saves it to a file.
+builder](/packer/integrations/hashicorp/docker) that was committed and saves it to a file.
 This is similar to exporting the Docker image directly from the builder, except
 that it preserves the hierarchy of images and metadata.
 

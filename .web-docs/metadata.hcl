@@ -3,7 +3,7 @@
 integration {
   name = "Docker"
   description = "The docker plugin can be used with HashiCorp Packer to manage containers with Docker."
-  identifier = "packer/BrandonRomano/docker"
+  identifier = "packer/hashicorp/docker"
   component {
     type = "builder"
     name = "Docker"

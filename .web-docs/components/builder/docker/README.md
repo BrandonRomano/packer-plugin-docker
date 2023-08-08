@@ -193,10 +193,10 @@ You must specify (only) one of `commit`, `discard`, or `export_path`.
 ### Optional:
 
 - `aws_access_key` (string) - The AWS access key used to communicate with
-  AWS. [Learn how to set this.](/packer/integrations/BrandonRomano/amazon#specifying-amazon-credentials) 
+  AWS. [Learn how to set this.](/packer/integrations/hashicorp/amazon#specifying-amazon-credentials) 
 
 - `aws_secret_key` (string) - The AWS secret key used to communicate with
-  AWS. [Learn how to set this.](/packer/integrations/BrandonRomano/amazon#specifying-amazon-credentials)
+  AWS. [Learn how to set this.](/packer/integrations/hashicorp/amazon#specifying-amazon-credentials)
 
 - `aws_token` (string) - The AWS access token to use. This is different from
   the access key and secret key. If you're not sure what this is, then you
@@ -204,7 +204,7 @@ You must specify (only) one of `commit`, `discard`, or `export_path`.
   environmental variable.
 
 - `aws_profile` (string) - The AWS shared credentials profile used to
-  communicate with AWS. [Learn how to set this.](/packer/integrations/BrandonRomano/amazon#specifying-amazon-credentials)
+  communicate with AWS. [Learn how to set this.](/packer/integrations/hashicorp/amazon#specifying-amazon-credentials)
 
 - `author` (string) - Set the author (e-mail) of a commit.
 
@@ -295,8 +295,8 @@ The generated variable available for this builder is:
 
 Once the tar artifact has been generated, you will likely want to import, tag,
 and push it to a container repository. Packer can do this for you automatically
-with the [docker-import](/packer/integrations/BrandonRomano/docker/latest/components/post-processor/docker-import) and
-[docker-push](/packer/integrations/BrandonRomano/docker/latest/components/post-processor/docker-push) post-processors.
+with the [docker-import](/packer/integrations/hashicorp/docker/latest/components/post-processor/docker-import) and
+[docker-push](/packer/integrations/hashicorp/docker/latest/components/post-processor/docker-push) post-processors.
 
 **Note:** This section is covering how to use an artifact that has been
 _exported_. More specifically, if you set `export_path` in your configuration.
@@ -592,7 +592,7 @@ and example configuration properties are shown below:
     }
 ```
 
-[Learn how to set Amazon AWS credentials.](/packer/integrations/BrandonRomano/amazon#specifying-amazon-credentials)
+[Learn how to set Amazon AWS credentials.](/packer/integrations/hashicorp/amazon#specifying-amazon-credentials)
 
 ## Dockerfiles
 

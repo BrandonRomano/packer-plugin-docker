@@ -1,7 +1,7 @@
 Type: `docker-push`
 
 The Packer Docker push post-processor takes an artifact from the
-[docker-import](/packer/integrations/BrandonRomano/docker/latest/components/post-processor/docker-import) post-processor and
+[docker-import](/packer/integrations/hashicorp/docker/latest/components/post-processor/docker-import) post-processor and
 pushes it to a Docker registry.
 
 ## Configuration
@@ -9,10 +9,10 @@ pushes it to a Docker registry.
 This post-processor has only optional configuration:
 
 - `aws_access_key` (string) - The AWS access key used to communicate with
-  AWS. [Learn how to set this.](/packer/integrations/BrandonRomano/amazon#specifying-amazon-credentials)
+  AWS. [Learn how to set this.](/packer/integrations/hashicorp/amazon#specifying-amazon-credentials)
 
 - `aws_secret_key` (string) - The AWS secret key used to communicate with
-  AWS. [Learn how to set this.](/packer/integrations/BrandonRomano/amazon#specifying-amazon-credentials)
+  AWS. [Learn how to set this.](/packer/integrations/hashicorp/amazon#specifying-amazon-credentials)
 
 - `aws_token` (string) - The AWS access token to use. This is different from
   the access key and secret key. If you're not sure what this is, then you
@@ -20,7 +20,7 @@ This post-processor has only optional configuration:
   environmental variable.
 
 - `aws_profile` (string) - The AWS shared credentials profile used to
-  communicate with AWS. [Learn how to set this.](/packer/integrations/BrandonRomano/amazon#specifying-amazon-credentials)
+  communicate with AWS. [Learn how to set this.](/packer/integrations/hashicorp/amazon#specifying-amazon-credentials)
 
 - `ecr_login` (boolean) - Defaults to false. If true, the post-processor will
   login in order to push the image to [Amazon EC2 Container Registry
@@ -66,4 +66,4 @@ will automatically log you out afterwards (just the server specified).
 ## Example
 
 For an example of using docker-push, see the section on using generated
-artifacts from the [docker builder](/packer/integrations/BrandonRomano/docker).
+artifacts from the [docker builder](/packer/integrations/hashicorp/docker).

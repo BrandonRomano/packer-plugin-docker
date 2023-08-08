@@ -1,10 +1,10 @@
 Type: `docker-import`
 
 The Packer Docker import post-processor takes an artifact from the [docker
-builder](/packer/integrations/BrandonRomano/docker) and imports it with Docker locally. This
+builder](/packer/integrations/hashicorp/docker) and imports it with Docker locally. This
 allows you to apply a repository and tag to the image and lets you use the
 other Docker post-processors such as
-[docker-push](/packer/integrations/BrandonRomano/docker/latest/components/post-processor/docker-push) to push the image to a
+[docker-push](/packer/integrations/hashicorp/docker/latest/components/post-processor/docker-push) to push the image to a
 registry.
 
 ## Basic Example
@@ -101,7 +101,7 @@ This example would take the image created by the Docker builder and import it
 into the local Docker process with a name of `hashicorp/packer:0.7`.
 
 Following this, you can use the
-[docker-push](/packer/integrations/BrandonRomano/docker/latest/components/post-processor/docker-push) post-processor to push it
+[docker-push](/packer/integrations/hashicorp/docker/latest/components/post-processor/docker-push) post-processor to push it
 to a registry, if you want.
 
 ## Changing Metadata
